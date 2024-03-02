@@ -289,12 +289,12 @@ include('header.php');
 
       <div class="input-group" id="nidGroup" style="display: none;">
         <label for="nid">Identification document number</label>
-        <input type="text" name="nid" placeholder="Enter Identification document number" required>
+        <input type="text" name="nid" placeholder="Enter Identification document number">
       </div>
 
       <div class="input-group" id="passportGroup" style="display: none;">
         <label for="passport">Passport number</label>
-        <input type="text" name="passport" required>
+        <input type="text" name="passport">
       </div>
 
       <div class="input-group">
@@ -373,7 +373,7 @@ include('header.php');
       </div>
       <div class="input-group" id="specifyPurposeGroup" style="display: none;">
         <label for="specify_purpose">Specify purpose of importation</label>
-        <input type="text" name="specify_purpose" id="specify_purpose" required>
+        <input type="text" name="specify_purpose" id="specify_purpose">
       </div>
       <h2>Product details</h2>
       <div class="input-group">
