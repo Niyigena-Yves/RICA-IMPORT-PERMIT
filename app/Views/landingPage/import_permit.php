@@ -345,7 +345,7 @@ include('header.php');
       </div>
       <div class="input-group">
         <label for="tin_number">TIN number</label>
-        <input type="number" name="tin_number" required>
+        <input type="number" name="tin_number" id="tin_number" placeholder="Enter TIN numbe" required>
       </div>
       <div class="input-group">
         <label for="reg_date">Registration Date</label>
@@ -407,7 +407,7 @@ include('header.php');
       </div>
       <div class="input-group">
         <label for="quantity">Quantity of product(s)</label>
-        <input type="number" name="quantity" placeholder="Enter quantity" required>
+        <input type="number" name="quantity" id="quantity" placeholder="Enter quantity" required min="1">
       </div>
     </fieldset>
 
@@ -449,6 +449,18 @@ include('header.php');
         specifyPurposeInput.required = false;
       }
     }
+  </script>
+  <script>
+    document.getElementById("tin_number").addEventListener("input", function () {
+      var inputValue = this.value.trim();
+      var isValid = /^\d{9}$/.test(inputValue);
+
+      if (!isValid) {
+        this.setCustomValidity("TIN number must be a 9-digit number");
+      } else {
+        this.setCustomValidity("");
+      }
+    });
   </script>
 
 </body>
