@@ -139,7 +139,7 @@ class Home extends BaseController
 							Weight(kg): ' . $weight . ',<br/>
 							Description of product: ' . $description . ',<br/>
 							Unit of measurement: ' . $measurement . ',<br/>
-							Quantity of product(s): ' . $quantity . ',<br/>
+							Quantity of product(s): ' . $quantity . '<br/>
 							</div>';
 
 						$mail->send();

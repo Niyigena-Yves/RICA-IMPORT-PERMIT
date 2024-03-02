@@ -144,10 +144,12 @@ include('header.php');
       padding: 1.5rem 2rem;
     }
 
-    .input-group, h2 {
+    .input-group,
+    h2 {
       margin: 1rem 0;
       padding: 0 20px;
     }
+
     h2 {
       padding: 0 20px;
     }
@@ -278,19 +280,19 @@ include('header.php');
       <h2>Business Owner Details</h2>
       <div class="input-group">
         <label for="citizenship">Applicant citizenship</label>
-        <select name="citizenship" id="citizenship">
-          <option value="" disabled selected>Selelct citizenship</option>
+        <select name="citizenship" id="citizenship" onchange="toggleInputs()">
+          <option value="" disabled selected>Select citizenship</option>
           <option value="Rwandan">Rwandan</option>
           <option value="Foreigner">Foreigner</option>
         </select>
       </div>
 
-      <div class="input-group">
+      <div class="input-group" id="nidGroup" style="display: none;">
         <label for="nid">Identification document number</label>
         <input type="text" name="nid" placeholder="Enter Identification document number" required>
       </div>
 
-      <div class="input-group">
+      <div class="input-group" id="passportGroup" style="display: none;">
         <label for="passport">Passport number</label>
         <input type="text" name="passport" required>
       </div>
@@ -311,17 +313,17 @@ include('header.php');
 
       <div class="input-group">
         <label for="phone">Phone number</label>
-        <input type="text" name="phone" placeholder="Enter phone number"required>
+        <input type="text" name="phone" placeholder="Enter phone number" required>
       </div>
 
       <div class="input-group">
         <label for="email">E-mail address</label>
-        <input type="text" name="email" placeholder="Enter email address"required>
+        <input type="text" name="email" placeholder="Enter email address" required>
       </div>
       <h2>Business Address</h2>
       <div class="input-group">
         <label for="location">Location</label>
-        <input type="text" name="location" placeholder="District: Enter district"required>
+        <input type="text" name="location" placeholder="District: Enter district" required>
       </div>
     </fieldset>
 
@@ -347,7 +349,7 @@ include('header.php');
       </div>
       <div class="input-group">
         <label for="reg_date">Registration Date</label>
-        <input type="date" name="reg_date" placeholder="Select date"required>
+        <input type="date" name="reg_date" placeholder="Select date" required>
       </div>
       <h2>Business Address</h2>
       <div class="input-group">
@@ -361,7 +363,7 @@ include('header.php');
       <h2>Importation details</h2>
       <div class="input-group">
         <label for="">Purpose of importation</label>
-        <select name="purpose">
+        <select name="purpose" id="purpose" onchange="toggleSpecifyPurpose()">
           <option value="" disabled selected>Select the purpose of importation</option>
           <option value="Direct sale">Direct sale</option>
           <option value="Personal use">Personal use</option>
@@ -369,9 +371,9 @@ include('header.php');
           <option value="Other">Other</option>
         </select>
       </div>
-      <div class="input-group">
+      <div class="input-group" id="specifyPurposeGroup" style="display: none;">
         <label for="specify_purpose">Specify purpose of importation</label>
-        <input type="text" name="specify_purpose" required>
+        <input type="text" name="specify_purpose" id="specify_purpose" required>
       </div>
       <h2>Product details</h2>
       <div class="input-group">
@@ -391,8 +393,8 @@ include('header.php');
         <input type="text" name="weight" required>
       </div>
       <div class="input-group">
-      <label for="description">Description of products</label>
-      <textarea name="description" id="" cols="30"></textarea>
+        <label for="description">Description of products</label>
+        <textarea name="description" id="" cols="30"></textarea>
         <!-- <input type="text" name="description" required> -->
       </div>
       <div class="input-group">
@@ -404,16 +406,51 @@ include('header.php');
         </select>
       </div>
       <div class="input-group">
-      <label for="quantity">Quantity of product(s)</label>
+        <label for="quantity">Quantity of product(s)</label>
         <input type="number" name="quantity" placeholder="Enter quantity" required>
       </div>
     </fieldset>
 
-      <div class="btns-group">
-        <input type="submit" value="Submit Application" class="btn btn-submit">
-      </div>
+    <div class="btns-group">
+      <input type="submit" value="Submit Application" class="btn btn-submit">
+    </div>
     </div>
   </form>
 
+  <script>
+    function toggleInputs() {
+      var citizenship = document.getElementById("citizenship").value;
+      var nidGroup = document.getElementById("nidGroup");
+      var passportGroup = document.getElementById("passportGroup");
+
+      if (citizenship === "Rwandan") {
+        nidGroup.style.display = "block";
+        passportGroup.style.display = "none";
+      } else if (citizenship === "Foreigner") {
+        nidGroup.style.display = "none";
+        passportGroup.style.display = "block";
+      } else {
+        nidGroup.style.display = "none";
+        passportGroup.style.display = "none";
+      }
+    }
+  </script>
+  <script>
+    function toggleSpecifyPurpose() {
+      var purposeSelect = document.getElementById("purpose");
+      var specifyPurposeGroup = document.getElementById("specifyPurposeGroup");
+      var specifyPurposeInput = document.getElementById("specify_purpose");
+
+      if (purposeSelect.value === "Other") {
+        specifyPurposeGroup.style.display = "block";
+        specifyPurposeInput.required = true;
+      } else {
+        specifyPurposeGroup.style.display = "none";
+        specifyPurposeInput.required = false;
+      }
+    }
+  </script>
+
 </body>
+
 </html>
